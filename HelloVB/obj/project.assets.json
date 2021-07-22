@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/RAX/Code/dotnet_test/HelloVB/HelloVB.vbproj",
+      "projectUniqueName": "/Users/RAX/Code/CommandLine_Play/HelloVB/HelloVB.vbproj",
       "projectName": "HelloVB",
-      "projectPath": "/Users/RAX/Code/dotnet_test/HelloVB/HelloVB.vbproj",
+      "projectPath": "/Users/RAX/Code/CommandLine_Play/HelloVB/HelloVB.vbproj",
       "packagesPath": "/Users/RAX/.nuget/packages/",
-      "outputPath": "/Users/RAX/Code/dotnet_test/HelloVB/obj/",
+      "outputPath": "/Users/RAX/Code/CommandLine_Play/HelloVB/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/RAX/.nuget/NuGet/NuGet.Config"

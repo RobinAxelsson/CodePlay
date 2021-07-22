@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gVYz19ogzOGlhOjmr0BoNbHbGlmUA9aBmuPNKJxzEtiGaoLxqv46dcxtgIa9qCrtyjxNXDWJgbZ4wjROomH1Qw==",
+  "dgSpecHash": "Ad1fS/PdWa0CLbFxFa6B8joOxTiw/AuCDAyduDF1K0v89MDH7FQxJMrvVV4bYCSMb4mCZeJtd3f+ZqQbfh3Pmg==",
   "success": true,
-  "projectFilePath": "/Users/RAX/Code/dotnet_test/HelloVB/HelloVB.vbproj",
+  "projectFilePath": "/Users/RAX/Code/CommandLine_Play/HelloVB/HelloVB.vbproj",
   "expectedPackageFiles": [],
   "logs": []
 }
