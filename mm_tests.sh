@@ -1,4 +1,5 @@
 JS_CMD="node mm_bash.js"
+PY_CMD="python3 mm.py"
 
 testLang(){
     local T1="1 2 3 4 5 10 14" #last two is expected output
@@ -29,3 +30,4 @@ testCase(){
 }
 
 testLang "$JS_CMD"
+testLang "$PY_CMD"
