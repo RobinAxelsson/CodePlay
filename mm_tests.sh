@@ -4,8 +4,8 @@ JS_CMD="node mm_bash.js"
 testLang(){
     local T1="1 2 3 4 5 10 14" #last two is expected output
     local T2="10 11 12 13 14 46 50"
-    testCase $1 $T1
-    testCase $1 $T2
+    ARR=("$T1" "$T2")
+    for T in "${ARR[@]}"; do testCase $1 $T; done
 }
 testCase(){
     local OUT=$("${@:1:7}")
