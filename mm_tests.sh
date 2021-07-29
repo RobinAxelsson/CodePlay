@@ -1,20 +1,35 @@
 JS_CMD="node mm_bash.js"
 
-
 testLang(){
     local T1="1 2 3 4 5 10 14" #last two is expected output
     local T2="10 11 12 13 14 46 50"
-    ARR=("$T1" "$T2")
-    for T in "${ARR[@]}"; do testCase $1 $T; done
+    local ARR=("$T1" "$T2")
+    local SCORE=0
+
+    for T in "${ARR[@]}"; do { 
+        testCase $1 $T; 
+        ((SCORE+=$?));
+    } 
+    done
+
+    echo $1 $SCORE"/${#ARR[@]}"
 }
 testCase(){
     local OUT=$("${@:1:7}")
     if [[ $OUT == ${@:8:2} ]]; then
-        echo Passed
+        return 1
     else
-        echo Fail
+        return 0
     fi
 }
+# testCase(){
+#     local OUT=$("${@:1:7}")
+#     if [[ $OUT == ${@:8:2} ]]; then
+#         echo Passed
+#     else
+#         echo Fail
+#     fi
+# }
 
 testLang "$JS_CMD"
 
