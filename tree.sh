@@ -43,28 +43,28 @@ diverge() {
 WIDTH=100
 CENTER=$((WIDTH / 2))
 ARRAY=("$CENTER")
-HEIGHT=63
+ROWS=63
 STRING=""
-
+YSIZE=16
 DIVERGE=false
 
-for ((y = HEIGHT; y > 0; y--)); do
-    if [[ $((y % 16)) == 0 ]]; then
-        echo % 16
+for ((y = ROWS; y >= 1; y--)); do
+    if [[ $((y % YSIZE)) == 0 ]]; then
         if [[ $DIVERGE = false ]]; then
             DIVERGE=true
             splitOnes
         else
             DIVERGE=false
+            YSIZE=$((YSIZE / 2))
         fi
     fi
     STRING=$(printLine "${ARRAY[@]}")
-    ROWS[$y]="$STRING"
+    TEXT[$y]="$STRING"
     STRING=""
     if [[ $DIVERGE == true ]]; then
         diverge
     fi
 done
-for i in "${ROWS[@]}"; do
+for i in "${TEXT[@]}"; do
     printf "%s\n" "$i"
 done
