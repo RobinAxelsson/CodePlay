@@ -2,77 +2,79 @@
 # art of _ underscores and 1 ones
 # a tree with maximum
 
-printLine() {
-    local args=("$@")
-    local string=""
-    for ((i = 0; i < WIDTH; i++)); do
-        local oneTrue=false
-        for T in "${args[@]}"; do
-            {
-                if [[ $T == "$i" ]]; then
-                    string="${string}1"
-                    oneTrue=true
-                fi
-            }
+# WIDTH=10
+# ROWS=5
+# Index=0
+
+INDEX=0
+
+makeY() { #args X Y H
+    local startX=$1
+    local startY=$2
+    local relativeHeight=$3
+    local relativeSplit=$((relativeHeight / 2))
+    local split=$((startY + relativeSplit))
+    local height=$((startY + relativeHeight))
+    local varL=$1
+    local varR=$1
+    for ((y = startY; y <= height; y++)); do
+        if [[ $y -gt $split ]]; then
+            ((varL--))
+            ((varR++))
+            Xs[$INDEX]="$varL"
+            Ys[$INDEX]="$y"
+            ((INDEX++))
+
+            Xs[$INDEX]="$varR"
+            Ys[$INDEX]="$y"
+            ((INDEX++))
+        else
+            Xs[$INDEX]="$startX"
+            Ys[$INDEX]="$y"
+            ((INDEX++))
+        fi
+    done
+}
+makeY 50 5 10
+makeY 55 16 10
+# for ((i = 0; i < INDEX; i++)); do
+#     echo "${Xs[$i]}" "${Ys[$i]}"
+# done
+
+TI=0
+for ((y = 1; y <= 30; y++)); do
+    for ((x = 0; x <= 100; x++)); do
+        for ((i = 0; i < INDEX; i++)); do
+            if [[ $x == "${Xs[$i]}" && $y == "${Ys[$i]}" ]]; then
+                ONE=true
+            fi
         done
-        if [[ $oneTrue = false ]]; then
+        if [[ $ONE = true ]]; then
+            string="${string}1"
+            ONE=false
+        else
             string="${string}_"
         fi
     done
-    echo $string
-}
-splitOnes() { #takes y-height as argument $1
-    declare -a new_array
-    for VAR in "${ARRAY[@]}"; do
-        new_array+=($((VAR - 1)))
-        new_array+=($((VAR + 1)))
-    done
-    ARRAY=("${new_array[@]}")
-}
-diverge() {
-    declare -a new_array
-    for ((i = 0; i < ${#ARRAY[@]}; i++)); do
-        if [[ $((i % 2)) == 0 ]]; then
-            ARRAY[$i]="$((${ARRAY[$i]} - 1))"
-        else
-            ARRAY[$i]="$((${ARRAY[$i]} + 1))"
-        fi
-    done
-}
+    TEXT[$TI]="$string""$y"
+    ((TI++))
+    string=""
+done
 
-WIDTH=100
-CENTER=$((WIDTH / 2))
-ARRAY=("$CENTER")
-ROWS=63
-STRING=""
-#YSIZE=16
-DIVERGE=false
+# for ((y = 1; y <= ROWS; y++)); do
+#     for ((x = 1; x <= WIDTH; x++)); do
+#         if [[ $x == 5 ]]; then
+#             char=1
+#         else
+#             char=_
+#         fi
+#         array[$Index]="$x $y $char"
+#         ((Index++))
+#     done
+# done
 
-createY() {
-    for ((y = 1; y < $1 + 1; y++)); do
-
-        STRING=$(printLine "${ARRAY[@]}")
-        TEXT[$y]="$STRING""$y"
-        STRING=""
-        # if [[ $DIVERGE == true ]]; then
-        #     diverge
-        # fi
-        if [[ $((y / 2)) == 0 ]]; then
-            if [[ $DIVERGE = false ]]; then
-                DIVERGE=true
-                #splitOnes
-            else
-                DIVERGE=false
-                #YSIZE=$((YSIZE / 2))
-            fi
-        fi
-    done
-}
-
-#reverse text array
-createY 16
+# reverse the array
 min=0
-#max=$((${#TEXT[@]} - 1))
 max=$((${#TEXT[@]}))
 while [[ min -lt max ]]; do
     # Swap current first and last elements
@@ -85,8 +87,3 @@ done
 for L in "${TEXT[@]}"; do
     printf "%s\n" "$L"
 done
-
-# for ((i = 0; i < ${#TEXT[@]}; i++)); do
-#     index=$((${#TEXT[@]} - i + 1)) # reverse the array
-#     printf "%s\n" "${TEXT[$index]}"
-# done
