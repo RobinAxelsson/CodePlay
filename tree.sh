@@ -1,9 +1,7 @@
 #!/bin/bash
-# art of _ underscores and 1 ones
-# a tree with maximum
 
 INDEX=0
-N_MAX=5
+N_MAX=$1
 makeY() {
     #args
     # X - center;
