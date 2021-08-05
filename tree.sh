@@ -7,17 +7,23 @@
 # Index=0
 
 INDEX=0
-
-makeY() { #args X Y H
+N_MAX=5
+makeY() {
+    #args
+    # X - center;
+    # coord Y - start;
+    # coord H - relative height
+    # N - current level
     local startX=$1
     local startY=$2
     local relativeHeight=$3
+    local N_VAL=$4
     local relativeSplit=$((relativeHeight / 2))
     local split=$((startY + relativeSplit))
-    local height=$((startY + relativeHeight))
+    local yMAX=$((startY + relativeHeight))
     local varL=$1
     local varR=$1
-    for ((y = startY; y <= height; y++)); do
+    for ((y = startY; y <= yMAX; y++)); do
         if [[ $y -gt $split ]]; then
             ((varL--))
             ((varR++))
@@ -34,15 +40,26 @@ makeY() { #args X Y H
             ((INDEX++))
         fi
     done
+    local iRev=$(($INDEX - 1))
+    local endY="${Ys[$iRev]}"
+    ((N_VAL++))
+    while [[ $endY == "${Ys[$iRev]}" ]]; do
+        if [[ $N_VAL == "$N_MAX" ]]; then
+            break
+        fi
+        echo n_val "$N_VAL"
+        echo makeY "${Xs[$iRev]}" "$endY" "$relativeSplit" "$N_VAL"
+        makeY "${Xs[$iRev]}" "$endY" "$relativeSplit" "$N_VAL"
+        #echo irev "$iRev"
+        #echo X "${Xs[$iRev]}"
+        #echo Y "$endY"
+        ((iRev--))
+    done
 }
-makeY 50 5 10
-makeY 55 16 10
-# for ((i = 0; i < INDEX; i++)); do
-#     echo "${Xs[$i]}" "${Ys[$i]}"
-# done
+makeY 32 0 32 0
 
 TI=0
-for ((y = 1; y <= 30; y++)); do
+for ((y = 1; y <= 63; y++)); do
     for ((x = 0; x <= 100; x++)); do
         for ((i = 0; i < INDEX; i++)); do
             if [[ $x == "${Xs[$i]}" && $y == "${Ys[$i]}" ]]; then
@@ -61,19 +78,7 @@ for ((y = 1; y <= 30; y++)); do
     string=""
 done
 
-# for ((y = 1; y <= ROWS; y++)); do
-#     for ((x = 1; x <= WIDTH; x++)); do
-#         if [[ $x == 5 ]]; then
-#             char=1
-#         else
-#             char=_
-#         fi
-#         array[$Index]="$x $y $char"
-#         ((Index++))
-#     done
-# done
-
-# reverse the array
+#reverse the array
 min=0
 max=$((${#TEXT[@]}))
 while [[ min -lt max ]]; do
