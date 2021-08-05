@@ -48,7 +48,18 @@ STRING=""
 YSIZE=16
 DIVERGE=false
 
-for ((y = ROWS; y > 0; y--)); do
+# for ((y = 1; y < ROWS; y++)); do
+for ((y = 1; y < 64; y++)); do
+
+    # echo "$y" "$YSIZE" $((y % YSIZE)) $(($((y - 1)) % $YSIZE))
+    # echo $(($((y + 1)) % YSIZE))
+
+    STRING=$(printLine "${ARRAY[@]}")
+    TEXT[$y]="$STRING""$y"
+    STRING=""
+    if [[ $DIVERGE == true ]]; then
+        diverge
+    fi
     if [[ $((y % YSIZE)) == 0 ]]; then
         if [[ $DIVERGE = false ]]; then
             DIVERGE=true
@@ -58,15 +69,27 @@ for ((y = ROWS; y > 0; y--)); do
             YSIZE=$((YSIZE / 2))
         fi
     fi
-    STRING=$(printLine "${ARRAY[@]}")
-    TEXT[$y]="$STRING"
-    STRING=""
-    if [[ $DIVERGE == true ]]; then
-        diverge
-    fi
 done
-length=63
-for i in "${TEXT[@]}"; do
-    printf "%s\n" "$i""$length"
-    length=$((length - 1))
+
+#reverse text array
+
+min=0
+#max=$((${#TEXT[@]} - 1))
+max=$((${#TEXT[@]}))
+echo ${#TEXT[@]}
+while [[ min -lt max ]]; do
+    # Swap current first and last elements
+    x="${TEXT[$min]}"
+    TEXT[$min]="${TEXT[$max]}"
+    TEXT[$max]="$x"
+    ((min++, max--))
 done
+#for VAR in "${ARRAY[@]}"; do
+for L in "${TEXT[@]}"; do
+    printf "%s\n" "$L"
+done
+
+# for ((i = 0; i < ${#TEXT[@]}; i++)); do
+#     index=$((${#TEXT[@]} - i + 1)) # reverse the array
+#     printf "%s\n" "${TEXT[$index]}"
+# done
