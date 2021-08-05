@@ -2,10 +2,6 @@
 # art of _ underscores and 1 ones
 # a tree with maximum
 
-# WIDTH=10
-# ROWS=5
-# Index=0
-
 INDEX=0
 N_MAX=5
 makeY() {
@@ -47,12 +43,7 @@ makeY() {
         if [[ $N_VAL == "$N_MAX" ]]; then
             break
         fi
-        echo n_val "$N_VAL"
-        echo makeY "${Xs[$iRev]}" "$endY" "$relativeSplit" "$N_VAL"
         makeY "${Xs[$iRev]}" "$endY" "$relativeSplit" "$N_VAL"
-        #echo irev "$iRev"
-        #echo X "${Xs[$iRev]}"
-        #echo Y "$endY"
         ((iRev--))
     done
 }
@@ -78,17 +69,6 @@ for ((y = 1; y <= 63; y++)); do
     string=""
 done
 
-#reverse the array
-min=0
-max=$((${#TEXT[@]}))
-while [[ min -lt max ]]; do
-    # Swap current first and last elements
-    x="${TEXT[$min]}"
-    TEXT[$min]="${TEXT[$max]}"
-    TEXT[$max]="$x"
-    ((min++, max--))
-done
-#for VAR in "${ARRAY[@]}"; do
-for L in "${TEXT[@]}"; do
-    printf "%s\n" "$L"
+for ((i = 62; i >= 0; i--)); do
+    printf "%s\n" "${TEXT[$i]}"
 done
