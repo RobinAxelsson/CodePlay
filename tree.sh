@@ -48,7 +48,7 @@ STRING=""
 YSIZE=16
 DIVERGE=false
 
-for ((y = ROWS; y >= 1; y--)); do
+for ((y = ROWS; y > 0; y--)); do
     if [[ $((y % YSIZE)) == 0 ]]; then
         if [[ $DIVERGE = false ]]; then
             DIVERGE=true
@@ -65,6 +65,8 @@ for ((y = ROWS; y >= 1; y--)); do
         diverge
     fi
 done
+length=63
 for i in "${TEXT[@]}"; do
-    printf "%s\n" "$i"
+    printf "%s\n" "$i""$length"
+    length=$((length - 1))
 done
