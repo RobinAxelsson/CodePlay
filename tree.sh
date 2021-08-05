@@ -45,38 +45,35 @@ CENTER=$((WIDTH / 2))
 ARRAY=("$CENTER")
 ROWS=63
 STRING=""
-YSIZE=16
+#YSIZE=16
 DIVERGE=false
 
-# for ((y = 1; y < ROWS; y++)); do
-for ((y = 1; y < 64; y++)); do
+createY() {
+    for ((y = 1; y < $1 + 1; y++)); do
 
-    # echo "$y" "$YSIZE" $((y % YSIZE)) $(($((y - 1)) % $YSIZE))
-    # echo $(($((y + 1)) % YSIZE))
-
-    STRING=$(printLine "${ARRAY[@]}")
-    TEXT[$y]="$STRING""$y"
-    STRING=""
-    if [[ $DIVERGE == true ]]; then
-        diverge
-    fi
-    if [[ $((y % YSIZE)) == 0 ]]; then
-        if [[ $DIVERGE = false ]]; then
-            DIVERGE=true
-            splitOnes
-        else
-            DIVERGE=false
-            YSIZE=$((YSIZE / 2))
+        STRING=$(printLine "${ARRAY[@]}")
+        TEXT[$y]="$STRING""$y"
+        STRING=""
+        # if [[ $DIVERGE == true ]]; then
+        #     diverge
+        # fi
+        if [[ $((y / 2)) == 0 ]]; then
+            if [[ $DIVERGE = false ]]; then
+                DIVERGE=true
+                #splitOnes
+            else
+                DIVERGE=false
+                #YSIZE=$((YSIZE / 2))
+            fi
         fi
-    fi
-done
+    done
+}
 
 #reverse text array
-
+createY 16
 min=0
 #max=$((${#TEXT[@]} - 1))
 max=$((${#TEXT[@]}))
-echo ${#TEXT[@]}
 while [[ min -lt max ]]; do
     # Swap current first and last elements
     x="${TEXT[$min]}"
