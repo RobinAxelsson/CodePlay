@@ -1,12 +1,11 @@
 #!/bin/bash
 # art of _ underscores and 1 ones
 # a tree with maximum
+
 printLine() {
-    local length=$1
-    shift
     local args=("$@")
     local string=""
-    for ((i = 0; i < length; i++)); do
+    for ((i = 0; i < WIDTH; i++)); do
         local oneTrue=false
         for T in "${args[@]}"; do
             {
@@ -22,42 +21,50 @@ printLine() {
     done
     echo $string
 }
-WIDTH=15
-#CENTER=$((WIDTH / 2))
-ARRAY=(2 3)
-#HEIGHT=5
-HEIGHT=1
+splitOnes() { #takes y-height as argument $1
+    declare -a new_array
+    for VAR in "${ARRAY[@]}"; do
+        new_array+=($((VAR - 1)))
+        new_array+=($((VAR + 1)))
+    done
+    ARRAY=("${new_array[@]}")
+}
+diverge() {
+    declare -a new_array
+    for ((i = 0; i < ${#ARRAY[@]}; i++)); do
+        if [[ $((i % 2)) == 0 ]]; then
+            ARRAY[$i]="$((${ARRAY[$i]} - 1))"
+        else
+            ARRAY[$i]="$((${ARRAY[$i]} + 1))"
+        fi
+    done
+}
+
+WIDTH=100
+CENTER=$((WIDTH / 2))
+ARRAY=("$CENTER")
+HEIGHT=63
 STRING=""
-for ((y = 0; y < HEIGHT; y++)); do
-    #STRING=$(printLine $WIDTH $CENTER)
-    STRING=$(printLine $WIDTH "${ARRAY[@]}")
+
+DIVERGE=false
+
+for ((y = HEIGHT; y > 0; y--)); do
+    if [[ $((y % 16)) == 0 ]]; then
+        echo % 16
+        if [[ $DIVERGE = false ]]; then
+            DIVERGE=true
+            splitOnes
+        else
+            DIVERGE=false
+        fi
+    fi
+    STRING=$(printLine "${ARRAY[@]}")
     ROWS[$y]="$STRING"
     STRING=""
+    if [[ $DIVERGE == true ]]; then
+        diverge
+    fi
 done
 for i in "${ROWS[@]}"; do
     printf "%s\n" "$i"
 done
-
-# VAR=$(printLine 5 1 2)
-# echo $VAR
-
-### STRAIGHT LINE PRINT! ###
-# WIDTH=15
-# CENTER=$((WIDTH / 2))
-# echo $CENTER
-# HEIGHT=5
-# STRING=""
-# for ((y = 0; y < HEIGHT; y++)); do
-#     for ((x = 0; x < WIDTH; x++)); do
-#         if [[ $x == $CENTER ]]; then
-#             STRING="${STRING}1"
-#         else
-#             STRING="${STRING}_"
-#         fi
-#     done
-#     ROWS[$y]="$STRING"
-#     STRING=""
-# done
-# for i in "${ROWS[@]}"; do
-#     printf "%s\n" $i
-# done
