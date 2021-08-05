@@ -56,7 +56,7 @@ makeY() {
         ((iRev--))
     done
 }
-makeY 32 0 32 0
+makeY 50 0 32 0
 
 TI=0
 for ((y = 1; y <= 63; y++)); do
