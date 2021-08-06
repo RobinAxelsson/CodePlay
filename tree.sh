@@ -48,6 +48,10 @@ makeY() {
 makeY 50 0 32 0
 
 TI=0
+for ((i = 0; i < 63; i++)); do
+    echo "$i"
+done
+
 for ((y = 1; y <= 63; y++)); do
     for ((x = 0; x <= 100; x++)); do
         for ((i = 0; i < INDEX; i++)); do
