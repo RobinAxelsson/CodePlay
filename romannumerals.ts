@@ -1,4 +1,3 @@
-//var persons: { [id: string] : IPerson; } = {};
 const dict = Object.freeze({
   I: 1,
   V: 5,
@@ -53,58 +52,40 @@ let minusChars = (numerals) =>
     ""
   );
 let totalSum = (numerals) => sub(minusChars(numerals)) * 2 + add(numerals);
-function recursion(acc: string, rlist: string[], rest: number) {
-  if (rest === 0) return acc; //Base case
-  acc += rlist[0].repeat(Math.floor(rest / dict[rlist[0]]));
-  rest = rest % dict[rlist[0]];
-  if (rlist.length === 1) return acc;
-  return recursion(acc, rlist.slice(1), rest);
+let multiplyer = (x) => 10 ** x.toString().length;
+let floored = (x) =>
+  Math.floor(x / 10 ** x.toString().length) * 10 ** x.toString().length;
+function parse(acc: string, numb: number) {
+  if (numb === 0) return acc;
+  if (numb.toString().length > 3) {
+    let r = Math.floor(numb / 1000);
+    acc += "M".repeat(r);
+    numb -= 1000 * acc.length;
+    return parse(acc, numb);
+  }
+  let base = 10 ** (numb.toString().length - 1);
+  let current = Math.floor(numb / base) * base;
+  return parse((acc += dict[current]), (numb -= current));
 }
-// const recursion = (acc: string, rlist: string[], rest: number) =>
-//   rest === 0 || rlist.length === 0
-//     ? acc
-//     : recursion(
-//         (acc += rlist[0].repeat(Math.floor(rest / rDict[rlist[0]]))),
-//         rlist.slice(1),
-//         rest % rDict[rlist[0]]
-//       );
+let count = (x) => x.toString().length;
 
-//#region romanRec
-let romanRec = (x) => recursion("", ["M", "D", "C", "L", "X", "V", "I"], x);
-let test2 = romanRec(4);
-let test3 = romanRec(9);
-let test4 = romanRec(14);
-let test5 = romanRec(99);
-test2;
-test3;
-test4;
-test5;
-//#endregion
-
-let getNext = (x: string) =>
-  ["I", "V", "X", "L", "C", "D", "M"].reduce(
-    (acc, n, i, arr) => (x === n ? [...acc, arr[i + 1]] : acc),
-    []
-  )[0];
-let romeSub = (m, n) => dict[m] - dict[n];
-let romeAdd = (m, n) => dict[m] + dict[n];
-
-test4 = getNext("I");
-test4;
-function tryParse(s: string, comp: string) {
-  let nextVal = dict[comp];
-  let sum = add(s);
-  let countPrefix = nextVal - sum;
-  let prefix = s[0].repeat(countPrefix / dict[s[0]]);
-  if (prefix.length > 1) return s;
-  else return prefix + comp;
+function floored2(x: number) {
+  let m = 10 ** x.toString().length;
+  m = Math.floor(x / m) * m;
+  return m;
 }
-test4 = tryParse("IIIIIIIII", "X");
-test4;
-//LXXXXVIIII 99 XCIX
+let lambdaParse = (acc: string, x: number) =>
+  0 == x
+    ? acc
+    : x >= 2000
+    ? lambdaParse("M".repeat(Math.floor(x / 1000)), x - x / 1000)
+    : lambdaParse((acc += dict[floored2(x)]), x - floored2(x));
 
-//IV 5-1
-//VI
-//IIII
-//VIIII
-//
+let input1 = 100000000000;
+let a = parse("", input1);
+a;
+a = a.length;
+a;
+let input2 = 7;
+let b = lambdaParse("", input2);
+b;
