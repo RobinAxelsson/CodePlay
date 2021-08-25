@@ -16,7 +16,7 @@ let add = (numerals) => sum(numerals, 1);
 let sub = (numerals) => sum(numerals, -1);
 let endchar = (prev) => prev.numerals.slice(-1);
 
-let negatives = (numerals) =>
+let minusChars = (numerals) =>
   [...numerals].reduce(
     (prev, n) =>
       prev.numerals === ""
@@ -35,8 +35,5 @@ let negatives = (numerals) =>
       negatives: "",
     }
   ).negatives;
-let neg = negatives("XCIX");
-neg;
-let totalSum = (numerals) => sub(negatives(numerals)) * 2 + add(numerals);
-let test1 = totalSum("XCIX");
-test1;
+
+let totalSum = (numerals) => sub(minusChars(numerals)) * 2 + add(numerals);
