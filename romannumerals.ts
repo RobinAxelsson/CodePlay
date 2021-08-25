@@ -8,15 +8,6 @@ const rDict = Object.freeze({
   D: 500,
   M: 1000,
 });
-const dDict = Object.freeze({
-  1: "I",
-  5: "V",
-  10: "X",
-  50: "L",
-  100: "C",
-  500: "D",
-  1000: "M",
-});
 let sum = (numerals, multiplyer) =>
   [...numerals].reduce((prev, n) => prev + rDict[n] * multiplyer, 0);
 
@@ -37,8 +28,28 @@ let totalSum = (numerals) => sub(minusChars(numerals)) * 2 + add(numerals);
 
 let div = (a, b) => Math.floor(a / b);
 
-let translate = (x) =>
-  ["I", "V", "X", "L", "C", "D", "M"].reverse().reduce((numeral, c, i, arr) => {
-    let charCount = rDict[c] / x;
-    if (charCount < 1) return numeral;
-  }, "");
+let test = "X".repeat(3);
+test;
+
+let parse = (d, r) => ({
+  roman: r.repeat(Math.floor(d / rDict[r])),
+  rest: d % rDict[r],
+});
+//let concat = (d, arr) => ({roman: r.repeat(Math.floor(d/rDict[r])), rest: d % rDict[r]})
+function recursion(acc: string, rlist: string[], rest: number) {
+  console.log(acc);
+  console.log(rlist);
+  console.log(rest);
+  if (rest === 0) return acc; //Base case
+  acc += rlist[0].repeat(Math.floor(rest / rDict[rlist[0]]));
+  rest = rest % rDict[rlist[0]];
+  if (rlist.length === 1) return acc;
+  return recursion(acc, rlist.slice(1), rest);
+}
+let list = ["M", "D", "C", "L", "X", "V", "I"];
+let romanRec = (x) => recursion("", list, x);
+let test2 = romanRec(1111);
+test2;
+
+//let translate = (x) =>
+//["M","D","C","L","X","V","I"].reduce((rn, char) => (), {roman:"", rest:x});
