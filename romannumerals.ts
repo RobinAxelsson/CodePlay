@@ -9,27 +9,34 @@ const d = Object.freeze({
   M: 1000,
 });
 
-//III to iterate and count
-let sum = (numerals: string, multiplyer) =>
+let sum = (numerals, multiplyer) =>
   [...numerals].reduce((prev, n) => prev + d[n] * multiplyer, 0);
-let add = (numerals: string) => sum(numerals, 1);
-let sub = (numerals: string) => sum(numerals, -1);
+
+let add = (numerals) => sum(numerals, 1);
+let sub = (numerals) => sum(numerals, -1);
+let endchar = (prev) => prev.numerals.slice(-1);
 
 let negatives = (numerals) =>
   [...numerals].reduce(
-    (prev, n) => {
-      if (prev.numerals === "") {
-        prev.numerals += n;
-        return prev;
-      }
-      let end = prev.numerals.slice(-1);
-      if (d[end] < d[n]) prev.negatives += end;
-      prev.numerals += n;
-      return prev;
-    },
-    { numerals: "", negatives: "" }
+    (prev, n) =>
+      prev.numerals === ""
+        ? { numerals: (prev.numerals += n), negatives: "" }
+        : d[endchar(prev)] < d[n]
+        ? {
+            negatives: (prev.negatives += endchar(prev)),
+            numerals: (prev.numerals += n),
+          }
+        : {
+            numerals: (prev.numerals += n),
+            negatives: prev.negatives,
+          },
+    {
+      numerals: "",
+      negatives: "",
+    }
   ).negatives;
-
+let neg = negatives("XCIX");
+neg;
 let totalSum = (numerals) => sub(negatives(numerals)) * 2 + add(numerals);
 let test1 = totalSum("XCIX");
 test1;
