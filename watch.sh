@@ -5,4 +5,4 @@
 # fswatch -or ~/Code/CodeChallanges/RomanNumerals/src/ | xargs -n1 -I{} echo hello
 # fswatch -or ~/Code/CodeChallanges/RomanNumerals/src/romannumerals.js | xargs -n1 -I{} echo hello
 # fswatch -or ~/Code/CodeChallanges/RomanNumerals/src/romannumerals.js | xargs -n1 -I{} node ~/Code/CodeChallanges/RomanNumerals/src/romannumerals.js
-fswatch -or ./src/romannumerals.js | xargs -n1 -I{} node ./src/romannumerals.js
+fswatch -or ./romannumerals.js | xargs -n1 -I{} node ./romannumerals.js
