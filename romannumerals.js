@@ -38,38 +38,34 @@ const deciToRome = {
   1000: "M",
 };
 
-function deciParse(x) {
-  let numerals = [...x];
-  let dec = 0;
-  while (numerals.length > 1) {
-    if (romeToDeci[numerals[0]] < romeToDeci[numerals[1]]) {
-      dec -= romeToDeci[numerals[0]];
-    } else {
-      dec += romeToDeci[numerals[0]];
-    }
-    numerals = numerals.slice(1);
-  }
-  return dec + romeToDeci[numerals[0]];
-}
-function romanParse(x) {
-  let numeral = "";
-  while (x > 0) {
-    if (x.toString().length > 3) {
-      let r = Math.floor(x / 1000);
-      numeral += "M".repeat(r);
-      x -= 1000 * numeral.length;
-    } else {
-      let base = 10 ** (x.toString().length - 1);
-      let current = Math.floor(x / base) * base;
-      numeral += deciToRome[current];
-      x -= current;
-    }
-  }
-  return numeral;
-}
+const subtractRoman = (deci, rome) => deci - romeToDeci[rome];
+const addRoman = (a, b) => a + romeToDeci[b];
+const convert = (x) => romeToDeci[x];
+const isNegative = (left, right) => convert(left) < convert(right);
+const deciParse = (x) =>
+  [...x].reduce(
+    (prev, val, i, arr) =>
+      isNegative(val, arr[i + 1])
+        ? subtractRoman(prev, val)
+        : addRoman(prev, val),
+    0
+  );
 const pipe = (x, funcs) => funcs.reduce((prev, f) => f(prev), x);
-const formatRoman = (x) => pipe(x, [deciParse, romanParse]);
+const base10 = (x) => 10 ** (x.toString().length - 1);
+const floorIt = (x) => Math.floor(x / base10(x)) * base10(x);
+const splitNumber = (x) => [...x.toString()];
+const multiply10s = (x) =>
+  x.map((val, i, arr) => val * 10 ** (arr.length - i - 1));
+const removeZeros = (x) => x.filter((x) => x != 0);
+const numeralParse = (x) =>
+  x
+    .map((val) => (val > 1000 ? "M".repeat(val / 1000) : deciToRome[val]))
+    .join(""); //Parses a list with floored numbers: 1000, 300, 40, 20, 1
 
+const romanParse = (x) =>
+  pipe(x, [splitNumber, multiply10s, removeZeros, numeralParse]);
+
+const formatRoman = (x) => pipe(x, [deciParse, romanParse]);
 const expectEqual = function (actual, expected) {
   if (actual === expected) return 1;
   console.log(`false - expected: ${expected} actual: ${actual}`);
@@ -83,6 +79,8 @@ function testAsserts(asserts) {
 function testSuite() {
   console.log("----------------");
   testAsserts([
+    expectEqual(isNegative("I", "X"), true),
+    expectEqual(isNegative("X", "X"), false),
     expectEqual(deciParse("MMMMMMMMMMMMMIIII"), 13004),
     expectEqual(deciParse("CCXX"), 220),
     expectEqual(deciParse("LLLXXXXX"), 200),
