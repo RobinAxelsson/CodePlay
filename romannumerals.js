@@ -1,10 +1,31 @@
 const romeToDeci = {
   I: 1,
+  II: 2,
+  III: 3,
+  IV: 4,
   V: 5,
+  VI: 6,
+  VII: 7,
+  VIII: 8,
+  IX: 9,
   X: 10,
+  XX: 20,
+  XXX: 30,
+  XL: 40,
   L: 50,
+  LX: 60,
+  LXX: 70,
+  LXX: 80,
+  XC: 90,
   C: 100,
+  CC: 200,
+  CCC: 300,
+  CD: 400,
   D: 500,
+  DC: 600,
+  DCC: 700,
+  DCCC: 800,
+  CM: 900,
   M: 1000,
 };
 const deciToRome = {
@@ -38,19 +59,21 @@ const deciToRome = {
   1000: "M",
 };
 
-const subtractRoman = (deci, rome) => deci - romeToDeci[rome];
-const addRoman = (a, b) => a + romeToDeci[b];
-const convert = (x) => romeToDeci[x];
-const isNegative = (left, right) => convert(left) < convert(right);
-const deciParse = (x) =>
+const isLeftSmaller = (left, right) => romeToDeci[left] < romeToDeci[right];
+const splitRoman = (x) =>
   [...x].reduce(
     (prev, val, i, arr) =>
-      isNegative(val, arr[i + 1])
-        ? subtractRoman(prev, val)
-        : addRoman(prev, val),
-    0
+      isLeftSmaller(val, arr[i + 1])
+        ? [...prev, val + arr[i + 1]]
+        : isLeftSmaller(arr[i - 1], val)
+        ? prev
+        : [...prev, val],
+    []
   );
+const deciParseChars = (x) => x.reduce((prev, x) => prev + romeToDeci[x], 0);
 const pipe = (x, funcs) => funcs.reduce((prev, f) => f(prev), x);
+const deciParse = (x) => pipe(x, [splitRoman, deciParseChars]);
+
 const base10 = (x) => 10 ** (x.toString().length - 1);
 const floorIt = (x) => Math.floor(x / base10(x)) * base10(x);
 const splitNumber = (x) => [...x.toString()];
@@ -79,8 +102,8 @@ function testAsserts(asserts) {
 function testSuite() {
   console.log("----------------");
   testAsserts([
-    expectEqual(isNegative("I", "X"), true),
-    expectEqual(isNegative("X", "X"), false),
+    expectEqual(isLeftSmaller("I", "X"), true),
+    expectEqual(isLeftSmaller("X", "X"), false),
     expectEqual(deciParse("MMMMMMMMMMMMMIIII"), 13004),
     expectEqual(deciParse("CCXX"), 220),
     expectEqual(deciParse("LLLXXXXX"), 200),
