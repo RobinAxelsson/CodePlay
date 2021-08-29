@@ -37,6 +37,7 @@ const deciToRome = {
   900: "CM",
   1000: "M",
 };
+
 function deciParse(x) {
   let numerals = [...x];
   let dec = 0;
@@ -66,9 +67,9 @@ function romanParse(x) {
   }
   return numeral;
 }
-const formatRoman = (x) => romanParse(deciParse(x));
+const pipe = (x, funcs) => funcs.reduce((prev, f) => f(prev), x);
+const formatRoman = (x) => pipe(x, [deciParse, romanParse]);
 
-//TESTS
 const expectEqual = function (actual, expected) {
   if (actual === expected) return 1;
   console.log(`false - expected: ${expected} actual: ${actual}`);
