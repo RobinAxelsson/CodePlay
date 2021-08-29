@@ -2,9 +2,6 @@ Imports System
 
 Module Program
     Sub Main(args As String())
-        Console.WriteLine("VB: Hello!")
-        For Each a As String In args
-            Console.WriteLine(a)
-        Next
+        Console.WriteLine("VB: Hello!" + args(0) + " " + args(1))
     End Sub
 End Module

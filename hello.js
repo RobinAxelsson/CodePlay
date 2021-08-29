@@ -1,2 +1,1 @@
-console.log('JS: Hello!')
-console.log(process.argv)
+console.log(`JS: Hello! ${process.argv}`);

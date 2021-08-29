@@ -1,3 +1,2 @@
 import sys
-print('Python: Hello!')
-print(sys.argv)
+print(f'Python: Hello! {sys.argv}')
