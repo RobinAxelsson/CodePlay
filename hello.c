@@ -2,6 +2,10 @@
 
 int main(int argc, char *argv[])
 {
-  printf("C: Hello!: %s\n", argv[1]);
+  printf("C: Hello!: ");
+  int counter;
+  for (counter = 0; counter < argc; counter++)
+    printf(" %s", argv[counter]);
+  printf("\n");
   return 0;
 }

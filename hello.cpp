@@ -3,8 +3,9 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-    cout << "C++: Hello!\n";
+    cout << "C++: Hello! ";
     for (int i = 0; i < argc; ++i)
         cout
-            << argv[i] << "\n";
+            << argv[i] << " ";
+    cout << "\n";
 }
