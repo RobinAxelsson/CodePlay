@@ -6,4 +6,11 @@ dotnet script helloworld.csx
 ```sh
 dotnet script init
 ```
-create build task
+
+Add shebang and nuget packet reference
+```csharp
+#!/usr/bin/env dotnet-script
+#r "nuget: Bogus, 33.1.1"
+```
+reference:
+https://www.elliotdenolf.com/posts/csharp-scripting-using-dotnet-script/
