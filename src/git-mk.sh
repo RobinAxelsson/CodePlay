@@ -1,7 +1,7 @@
 #!/bin/sh
 # Creates a new project with git init and README.md
 # --code flag opens in vs code
-if [[ $# -e 0 ]]; then
+if [[ $# == 0 ]]; then
     echo "git-mk creates a new folder and git inits it"
     echo "parameters needed: <repo-directory-name>"
     echo "optional flag: '--code' to open in vs code"
