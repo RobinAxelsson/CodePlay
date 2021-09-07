@@ -6,3 +6,4 @@ else
     NAME=$1
 fi
 gh repo create $NAME -y --private
+git push --set-upstream origin master
