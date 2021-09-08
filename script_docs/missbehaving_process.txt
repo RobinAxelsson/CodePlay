@@ -1,0 +1,11 @@
+-----------------------
+COMMAND
+/usr/local/share/dotnet/dotnet
+/Users/RAX/.nuget/
+packages/
+microsoft.dotnet-interactive/
+1.0.243101/tools/net5.0/any/
+Microsoft.DotNet.Interactive.App.dll [vscode] stdio 
+--working-dir 
+/Users/RAX/Code/NET-playground/F#-play --http-port 54045
+-----------------------
