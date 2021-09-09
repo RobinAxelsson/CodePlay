@@ -5,6 +5,8 @@
 
 ### Check system status
 # htop
+# F7, F8 change Nice-val
+# F9 kill - pick 15 sigterm
 
 ### Search process
 # ps | grep <name>
