@@ -4,7 +4,7 @@
 # brew install pidof
 
 ### Check system status
-# htop
+# htop -s PERCENT_CPU
 # F7, F8 change Nice-val
 # F9 kill - pick 15 sigterm
 

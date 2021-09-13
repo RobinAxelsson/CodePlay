@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Configure to map
+# docker build . -t <name>
+# docker run <name> -p 5300:8000
+
 #-------
 # ENTRYPOINT ["tail", "-f", "/dev/null"]
 # The tail -f /dev/null is a common idiom for keeping a container alive indefinitely if the "real" command isn't long-lived
