@@ -1,18 +1,25 @@
 #!/usr/bin/env bash
 
-# docker run [OPTIONS] <image> <command> args...
-### builds and runs containers from images, if its not in your system it pulls from dockerhub
-# docker run <docker-image>
-# docker container run ### new syntax?
+#-------
+# ENTRYPOINT ["tail", "-f", "/dev/null"]
+# The tail -f /dev/null is a common idiom for keeping a container alive indefinitely if the "real" command isn't long-lived
+### To keep open
 
-# docker create --name <new-container-name> <image-name>
-# creates container
+# docker build - < Dockerfile
+# docker build -f /path/to/a/Dockerfile . # eg docker build -f . .
+# docker build -t image_name -f . . # builds with name
+### builds docker image
 
-# docker container run -it <docker-image> /bin/bash    #### Works
-# start container in interactive mode
+# docker container run --name <container-name> <image>
+### creates docker container from image and runs it
 
-# docker exec -i -t /bin/bash
-### bash shell into container
+# docker container run -it <docker-image> /bin/bash OR /bin/sh
+# start container in interactive mode -IF ENTRYPOINT SPEC-
+
+# docker start -i <container> # start interactive
+
+# docker exec -it <container-name> /bin/bash
+### bash shell into container - needs to be running in different process
 
 # ^C ^D
 ### Exit container shell
@@ -28,12 +35,6 @@
 
 # docker cp
 ### copies files from running container to the host or other way around.
-
-# docker build
-### builds Docker images from a Dockerfile and a "context"
-
-# docker build - < Dockerfile
-### pipes a single dockerfile without repo or context
 
 # docker-compose up -d
 ### aggregates the output of each container
