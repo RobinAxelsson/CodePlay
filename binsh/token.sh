@@ -9,10 +9,11 @@ done
 if [[ "$*" == "--help" ]]; then
     echo "-s <service-name> req"
     echo "-a <associated-account>"
-    echo -n for new token
-    echo -d for delete token
-    echo ls to list tokens from osx keychain
-    echo -ga find associated account
+    echo commands:
+    echo token new -s name -a acc
+    echo token delete -s name -a acc
+    echo token ls to list tokens from osx keychain
+    echo token getacc find associated account
     exit 0
 fi
 if [[ "$*" == "ls" ]]; then
