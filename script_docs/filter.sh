@@ -3,7 +3,7 @@
 # awk '{ print #3 }'
 ### prints 3rd column in input, piped or file
 
-# tail -1 | awk '{ print #3 }'
+# tail -1 | awk '{ print $3 }'
 ### Last line 3rd column
 
 # nl -w2 -s ' '

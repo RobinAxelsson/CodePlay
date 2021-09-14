@@ -3,6 +3,7 @@
 # Configure to map
 # docker build . -t <name>
 # docker run <name> -p 5300:8000
+# expose port...
 
 #-------
 # ENTRYPOINT ["tail", "-f", "/dev/null"]
