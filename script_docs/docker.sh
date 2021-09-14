@@ -6,9 +6,11 @@
 # docker create --name <new-container-name> <image>
 # docker start <container> -a ### -a is in attached mode
 # docker exec -it <container-name> /bin/bash ### exit shell ^C ^D
-# docker network create <network-name>
 
+# docker network create <network-name>
 # docker network ls
+# docker run -p 27017:27017 -d mongo
+
 # docker images
 # docker ps -a
 # docker rm <container>
