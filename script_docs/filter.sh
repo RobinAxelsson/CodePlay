@@ -17,3 +17,6 @@
 
 # sed -n '2,5p'
 ### selects linenumber 2-5
+
+# sed -n '2p'
+### selects linenumber 2
