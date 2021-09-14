@@ -1,8 +1,23 @@
 #!/usr/bin/env bash
 
+### TOP CMD
+# docker build -t image_name -f . .
+# docker container run --name <new-container-name> <image>
+# docker create --name <new-container-name> <image>
+# docker start <container> -a ### -a is in attached mode
+# docker exec -it <container-name> /bin/bash ### exit shell ^C ^D
+# docker network create <network-name>
+
+# docker network ls
+# docker images
+# docker ps -a
+# docker rm <container>
+# docker rmi <image>
+# docker container prune
+
 # Configure to map
 # docker build . -t <name>
-# docker run <name> -p 5300:8000
+# docker run <name> -p 5300:8000 ### first is exposed to public second is internally (App port)
 # expose port...
 
 #-------

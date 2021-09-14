@@ -7,8 +7,8 @@ if [[ $# == 0 ]]; then
     echo "optional flag: '--code' to open in vs code"
     Exit 1
 fi
-mkdir $1
-cd $_
+mkdir -p $1
+cd $1
 git init &>/dev/null
 
 if [[ "$*" == *--code* ]]; then
@@ -16,3 +16,5 @@ if [[ "$*" == *--code* ]]; then
 fi
 touch README.md
 touch .gitignore
+echo git repo initialized
+echo run git-pp inside repo to push to github
