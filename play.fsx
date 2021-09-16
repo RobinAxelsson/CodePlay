@@ -1,39 +1,15 @@
-let name = "Bob"
-let rank = "101"
+// numbs |> List.iter (fun n -> printfn "%i" n)
 
-printfn $"Name: {name}, rank: {rank}"
+for n in [ 1 .. 100 ] do
+    if n % 15 = 0 then printfn "FizzBuzz"
+    elif n % 3 = 0 then printfn "Fizz"
+    elif n % 5 = 0 then printfn "Buzz"
+    else printfn "%i" n
 
-let adder (x: int, y: int) : int = x + y
-let a = adder (5, 6)
-printfn $"{string a}"
-let add6 x : int = adder (x, 6)
-let add3 x : int = adder (x, 3)
-let add1 x : int = adder (x, 1)
+// let f p x =
+//     match x with
+//     | x when x < p -> -1
+//     | x when x = p ->  0
+//     | _ -> 1
 
-let b = 1
-let pipe = add1 >> add1 >> add1 >> add6
-printfn $"{string (pipe b)}"
-
-let pipe2 x : int =
-    x
-    // 1
-    |> add1
-    |> add1
-    |> add1
-    |> add6
-
-printfn $"{string (pipe2 1)}"
-
-let fruits = [ "banana"; "apple"; "pear"; "melon" ]
-fruits
-|> String.concat 
-// for f in fruits do
-//     printf $"{f} "
-let concat = fruits |> String.concat "+"
-printfn "%s", concat
-// let func list =
-//     list |> List.iter (fun f -> printfn $"{f}")
-
-
-
-// let conc list =
+// let y = Seq.groupBy (f p)
