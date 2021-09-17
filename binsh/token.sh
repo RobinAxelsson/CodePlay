@@ -44,7 +44,6 @@ else
 fi
 if [[ "$1" == "delete" ]]; then
     security delete-generic-password -a "$associated_account" -s "$service_name" | grep password
-    echo token deleted
     exit 0
 fi
 
