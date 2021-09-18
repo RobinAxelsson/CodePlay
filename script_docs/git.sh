@@ -37,3 +37,10 @@
 
 # git branch -d <local-branch>
 ### deletes local branch
+
+# git clean -n
+### views what it will remove (untracked files) if you run git clean.
+# git clean -f
+### force cleans all
+# git clean -i
+### cleans interactivly
