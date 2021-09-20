@@ -13,10 +13,7 @@ if [[ "$*" == *--help* ]]; then
     echo flags -n name -o open
     exit 1
 fi
-if [[ "$*" == *-n* ]]; then
-    name="${key_pairs[-n]}"
-fi
-gh repo create $name -y --private
+gh repo create -y --private
 if [ "$?" = "0" ]; then
     git push --set-upstream origin master
 else
@@ -24,4 +21,6 @@ else
 fi
 if [[ "$*" == *-o* ]]; then
     git-url -o
+else
+    echo git-url: "$(git-url)"
 fi

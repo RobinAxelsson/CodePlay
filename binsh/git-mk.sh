@@ -24,7 +24,6 @@ echo git directory made!
 if [[ "$*" == *-pr* ]]; then
     git-pp
     echo git repo initialized and pushed to GitHub remote
-    echo git-url
 else
     echo run git-pp inside repo to push to github
 fi
