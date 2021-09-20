@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #https://cli.github.com/manual/gh_repo_create
 # publishes a private repo to github and adds as origin
 
