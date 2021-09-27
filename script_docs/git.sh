@@ -49,3 +49,16 @@
 # git rm -r --cached some-directory
 # git commit -m 'Remove the now ignored directory "some-directory"'
 # git push origin master
+
+### git diff
+https://git-scm.com/docs/git-difftool
+# git diff #default displays uncommitted changes
+## Diff for file
+# git diff <commit-1> <commit-2> <file>
+# git diff HEAD~2 HEAD main.c #Diff between current and two commits back for main.c
+
+### changes editor to nano, code, vim
+# git config --global core.editor "nano"
+# git config --global core.editor "code --wait"
+# git config --global core.editor "vim"
+git checkout -B master origin/master # reset to master origin

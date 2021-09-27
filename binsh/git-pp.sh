@@ -15,12 +15,14 @@ if [[ "$*" == *--help* ]]; then
 fi
 gh repo create -y --private
 if [ "$?" = "0" ]; then
-    git push --set-upstream origin master
+    # may need to commit before pushing
+    echo "git push --set-upstream origin master"
+    # git push --set-upstream origin main
 else
-    echo - No push upstream was made.
+    echo - Repository was not created.
 fi
-if [[ "$*" == *-o* ]]; then
-    git-url -o
-else
-    echo git-url: "$(git-url)"
-fi
+# if [[ "$*" == *-o* ]]; then
+#     git-url -o
+# else
+#     echo git-url: "$(git-url)"
+# fi
