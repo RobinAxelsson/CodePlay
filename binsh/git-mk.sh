@@ -17,7 +17,7 @@ if [[ "$*" == *--code* ]]; then
     code .
 fi
 touch README.md
-touch .gitignore
+cat $HOME/.gitignore >>.gitignore
 
 echo git directory made!
 
