@@ -28,5 +28,31 @@ if WinExist("ahk_exe WindowsTerminal.exe")
     WinActivate
 else
     run wt
-; else run WindowsTerminal.exe
 return
+
+^!r::
+if WinExist("ahk_exe rider64.exe")
+    WinActivate
+return
+
+^!b::
+if WinExist("ahk_exe chrome.exe")
+    WinActivate
+else
+    run chrome
+return
+
+^!c::
+if WinExist("ahk_exe Code.exe")
+    WinActivate
+else
+    run code
+return
+
+^!t::
+if WinExist("ahk_exe Teams.exe")
+    WinActivate
+else
+    run C:\Users\axels\AppData\Local\Microsoft\Teams\Update.exe --processStart "Teams.exe"
+return
+
