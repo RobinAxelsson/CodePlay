@@ -17,7 +17,12 @@
 -----------------------------------------------
 */
 
-MsgBox Starting Startscript.ahk
+; MsgBox Starting Startscript.ahk
+::@nexer::
+    Run, "C:\Program Files\Mozilla Firefox\firefox.exe" -p default-release
+
+::@workspace1::
+    Run, "C:\Program Files\Mozilla Firefox\firefox.exe" -p workspace1
 
 ::@reload::
     Run, "C:\users\axels\MS-Code\Bash-Tasks\autohotkey\reload.ahk"
@@ -54,5 +59,12 @@ if WinExist("ahk_exe Teams.exe")
     WinActivate
 else
     run C:\Users\axels\AppData\Local\Microsoft\Teams\Update.exe --processStart "Teams.exe"
+return
+
+^!n::
+if WinExist("ahk_exe firefox.exe")
+    WinActivate
+else
+    run firefox.exe
 return
 
