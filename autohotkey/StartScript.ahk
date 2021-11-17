@@ -118,6 +118,10 @@ return
     Run, "C:\Program Files\Mozilla Firefox\firefox.exe" -p workspace1
 return
 
+::@tasks::
+    Run, "C:\Program Files\Mozilla Firefox\firefox.exe" -p rax_tasks2
+return
+
 ::@reload::
     Run, "C:\users\axels\MS-Code\Bash-Tasks\autohotkey\reload.ahk"
 return
