@@ -118,8 +118,8 @@ return
     Run, "C:\Program Files\Mozilla Firefox\firefox.exe" -p workspace1
 return
 
-::@tasks::
-    Run, "C:\Program Files\Mozilla Firefox\firefox.exe" -p rax_tasks2
+::@home::
+    Run, "C:\Program Files\Mozilla Firefox\firefox.exe" -p home
 return
 
 ::@reload::
@@ -133,10 +133,10 @@ else
     run wt
 return
 
-^!r::
-if WinExist("ahk_exe rider64.exe")
-    WinActivate
-return
+; ^!q::
+; if WinExist("ahk_exe rider64.exe")
+;     WinActivate
+; return
 
 ^!b::
 if WinExist("ahk_exe chrome.exe")
