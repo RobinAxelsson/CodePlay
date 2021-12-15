@@ -122,44 +122,55 @@ return
     Run, "C:\Program Files\Mozilla Firefox\firefox.exe" -p home
 return
 
+::@th2103::
+    Run, "C:\Program Files\Mozilla Firefox\firefox.exe" -p TH2103
+return
+
 ::@reload::
     Run, "C:\users\axels\MS-Code\Bash-Tasks\autohotkey\reload.ahk"
 return
 
-^!Space::
+^!+Space::
 if WinExist("ahk_exe WindowsTerminal.exe")
     WinActivate
 else
     run wt
 return
 
-; ^!q::
-; if WinExist("ahk_exe rider64.exe")
-;     WinActivate
-; return
+^!+r::
+if WinExist("ahk_exe rider64.exe")
+    WinActivate
+return
 
-^!b::
+^!+b::
 if WinExist("ahk_exe chrome.exe")
     WinActivate
 else
     run chrome
 return
 
-^!c::
+^!+c::
 if WinExist("ahk_exe Code.exe")
     WinActivate
 else
     run code
 return
 
-^!t::
+^!+d::
+if WinExist("ahk_exe Discord.exe")
+    WinActivate
+else
+    run code
+return
+
+^!+t::
 if WinExist("ahk_exe Teams.exe")
     WinActivate
 else
     run C:\Users\axels\AppData\Local\Microsoft\Teams\Update.exe --processStart "Teams.exe"
 return
 
-^!n::
+^!+n::
 if WinExist("ahk_exe firefox.exe")
     WinActivate
 else
