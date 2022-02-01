@@ -1,0 +1,104 @@
+The values of Roman Numeral symbols in decimal are the following:
+
+I - 1  
+V - 5  
+X - 10  
+L - 50  
+C - 100  
+D - 500  
+M - 1000  
+In general, a roman number is written in descending order of symbols which are to be added.
+For example,  is written as  as  and  are to be added and  is subtracted from . One does not write 14 as IVX or 15 as VX. This is because, appearance of a symbol with lesser value before another symbol implies subtraction.
+
+Rules for subtraction:
+
+I can only be subtracted from V and X.
+X can only be subtracted from L and C.
+C can only be subtracted from D and M.
+V, L, D and M can't be subtracted from any symbol.
+At most one symbol can be subtracted from another symbol.
+For example,  would be written as CMXCIX and not IM.
+
+One last rule to be kept in mind while writing Roman Numerals is that except M, no numeral appears more than 3 times in a row and none of V, L, D appear even twice in a row. Hence 9 is IX and not VIIII.
+
+In this task, you'll be given symbols in descending order which represent a number. You have to output a valid roman numeral representation of that number by following the above rules.
+
+For example, the following represent all of the legitimate ways of writing the number sixteen:
+
+IIIIIIIIIIIIIIII
+VIIIIIIIIIII
+VVIIIIII
+XIIIIII
+VVVI
+XVI
+The last example being considered the most efficient, as it uses the least number of numerals.
+
+Input Format
+
+First line contains a single integer  denoting the number of test-cases.
+ lines follow, each contains a string representing a number.
+
+Output Format
+
+Output  lines,  line should contain the correct roman number representation of the  string in the input.
+
+Constraints:
+
+
+Sample Input
+
+5
+IIIII
+VVVVVVVVV
+MMMMMMMMMMMMMIIII
+LLLXXXXX
+CCXX
+Sample Output
+
+V
+XLV
+MMMMMMMMMMMMMIV
+CC
+CCXX
+Explanation
+
+More than 3 symbols can't appear in a row.
+V can't be subtracted from anything.
+More than 3 M can appear in a row.
+Converting all X to L makes LLLL which is not valid since V, L, D can not appear more than once in a row.
+This is an example of a correct representation.
+
+1	2	3	4	5	6	7	8	9
+I
+II
+III
+IV
+V
+VI
+VII
+VIII
+IX
+
+
+10	20	30	40	50	60	70	80	90
+X
+XX
+XXX
+XL
+L
+LX
+LXX
+LXXX
+XC
+
+
+100	200	300	400	500	600	700	800	900
+C
+CC
+CCC
+CD
+D
+DC
+DCC
+DCCC
+CM
