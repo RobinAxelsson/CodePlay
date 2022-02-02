@@ -1,0 +1,8 @@
+<Project>
+    <PropertyGroup>
+        <Message>MS Build says hello!</Message>
+    </PropertyGroup>
+    <Target Name="DisplayMessages">
+        <Message Text="$(Message)" Importance="high" />
+    </Target>
+</Project>
