@@ -11,3 +11,8 @@ let main(args) =
     printfn "args: %A" args
     printfn "env.cmdline: %A" <| Environment.GetCommandLineArgs()
     0
+
+//implicit
+let showCommandLineArgs() =
+for arg in Environment.GetCommandLineArgs() do
+    printfn $"arg = {arg}"
