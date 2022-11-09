@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -20,10 +21,17 @@ public class NumeralFormatTests
     }
     
     [Fact]
-    public void Numeral_Format_IIII()
+    public void Numeral_Format_IIII_Short()
     {
         var numeral = new Numeral("IIII");
         numeral.Should().Be("IV");
+    }
+    
+    [Fact]
+    public void Numeral_Format_IIII_Long()
+    {
+        var numeral = new Numeral("IIII");
+        numeral.Should().Be("IIII");
     }
     
     [Fact]
@@ -82,11 +90,18 @@ public class NumeralFormatTests
     [Fact]
     public void Numeral_decrement()
     {
-        _testOutputHelper.WriteLine("Start");
-
         var num = new Numeral("II");
         num--;
         (num == "I").Should().BeTrue();
+    }
+    
+    [Fact]
+    public void Numeral_decrement_below_one()
+    {
+        var num = new Numeral("I");
+
+        FluentActions.Invoking(() => num--)
+            .Should().Throw<ArithmeticException>();
     }
 
     [Fact]
