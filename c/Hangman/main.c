@@ -6,12 +6,12 @@ int main() {
     char secret[] = "apa";
     int secretLength = (sizeof(secret) / sizeof(char));
     char guesses[secretLength], guess;
-    for (int i = 0; i < secretLength - 1; ++i) {
+    for (int i = 0; i < secretLength; ++i) {
         guesses[i] = '_';
     }
+    guesses[secretLength-1] = 0;
 
-    int true = 1;
-    while(true){
+    while(1){
         printf("\nGuess a character: ");
         scanf("%c", &guess);
         getchar();
@@ -22,22 +22,18 @@ int main() {
             }
         }
 
-        for (int i = 0; i < secretLength-1; ++i) {
-            printf("%c", guesses[i]);
-        }
+        printf("%s", guesses);
 
-        for (int i = 0; i < secretLength-1; ++i) {
-            if(guesses[i] == '_')
-                break;
-
-            if(i == (secretLength-2)){
+        for (int i = 0; i < secretLength; ++i) {
+            if(guesses[i] == '\000'){
                 printf("\nGood play, you won!");
                 getchar();
-                true = 0;
+                return 0;
+            }
+            if(guesses[i] == '_'){
+                break;
             }
         }
     }
-
-    return 0;
 }
 
